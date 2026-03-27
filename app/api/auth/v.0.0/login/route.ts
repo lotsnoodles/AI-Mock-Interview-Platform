@@ -6,6 +6,7 @@ import { encryptData } from "@/app/utils/cipher";
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
+    process.env.JWT_SECRET = process.env.JWT_SECRET || "temporary_secret_for_build_purposes";
     await databaseConnection();
     const { email, password } = await request.json();
     if (!email || !password) {
